@@ -1,0 +1,408 @@
+{
+ "configurations": [
+  {
+   "core-site": {
+    "properties": {
+     "fs.defaultFS": "hdfs://bigdatatest",
+     "ha.zookeeper.quorum": "%HOSTGROUP::host_group_1%:2181,%HOSTGROUP::host_group_2%:2181,%HOSTGROUP::host_group_3%:2181"
+    }
+   }
+  },
+  {
+   "hdfs-site": {
+    "properties": {
+     "dfs.client.failover.proxy.provider.bigdatatest": "org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider",
+     "dfs.ha.automatic-failover.enabled": "true",
+     "dfs.ha.fencing.methods": "shell(/bin/true)",
+     "dfs.ha.namenodes.bigdatatest": "nn1,nn2",
+     "dfs.namenode.http-address": "%HOSTGROUP::host_group_1%:50070",
+     "dfs.namenode.http-address.bigdatatest.nn1": "%HOSTGROUP::host_group_1%:50070",
+     "dfs.namenode.http-address.bigdatatest.nn2": "%HOSTGROUP::host_group_2%:50070",
+     "dfs.namenode.https-address": "%HOSTGROUP::host_group_1%:50470",
+     "dfs.namenode.https-address.bigdatatest.nn1": "%HOSTGROUP::host_group_1%:50470",
+     "dfs.namenode.https-address.bigdatatest.nn2": "%HOSTGROUP::host_group_2%:50470",
+     "dfs.namenode.rpc-address.bigdatatest.nn1": "%HOSTGROUP::host_group_1%:8020",
+     "dfs.namenode.rpc-address.bigdatatest.nn2": "%HOSTGROUP::host_group_2%:8020",
+     "dfs.namenode.shared.edits.dir": "qjournal://%HOSTGROUP::host_group_1%:8485;%HOSTGROUP::host_group_2%:8485;%HOSTGROUP::host_group_3%:8485/bigdatatest",
+     "dfs.nameservices": "bigdatatest"
+    }
+   }
+  },
+  {
+   "yarn-site": {
+    "properties": {
+     "hadoop.registry.rm.enabled": "false",
+     "hadoop.registry.zk.quorum": "%HOSTGROUP::host_group_1%:2181,%HOSTGROUP::host_group_2%:2181,%HOSTGROUP::host_group_3%:2181",
+     "yarn.log.server.url": "http://%HOSTGROUP::host_group_2%:19888/jobhistory/logs",
+     "yarn.resourcemanager.address": "%HOSTGROUP::host_group_1%:8050",
+     "yarn.resourcemanager.admin.address": "%HOSTGROUP::host_group_1%:8141",
+     "yarn.resourcemanager.cluster-id": "yarn-cluster",
+     "yarn.resourcemanager.ha.automatic-failover.zk-base-path": "/yarn-leader-election",
+     "yarn.resourcemanager.ha.enabled": "true",
+     "yarn.resourcemanager.ha.rm-ids": "rm1,rm2",
+     "yarn.resourcemanager.hostname": "%HOSTGROUP::host_group_1%",
+     "yarn.resourcemanager.recovery.enabled": "true",
+     "yarn.resourcemanager.resource-tracker.address": "%HOSTGROUP::host_group_1%:8025",
+     "yarn.resourcemanager.scheduler.address": "%HOSTGROUP::host_group_1%:8030",
+     "yarn.resourcemanager.store.class": "org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore",
+     "yarn.resourcemanager.webapp.address": "%HOSTGROUP::host_group_1%:8088",
+     "yarn.timeline-service.address": "%HOSTGROUP::host_group_2%:10200",
+     "yarn.timeline-service.webapp.address": "%HOSTGROUP::host_group_2%:8188",
+     "yarn.timeline-service.webapp.https.address": "%HOSTGROUP::host_group_2%:8190",
+     "yarn.resourcemanager.zk-address": "%HOSTGROUP::host_group_1%:2181,%HOSTGROUP::host_group_2%:2181,%HOSTGROUP::host_group_3%:2181",
+     "yarn.resourcemanager.hostname.rm1": "%HOSTGROUP::host_group_1%:8190",
+     "yarn.resourcemanager.hostname.rm2": "%HOSTGROUP::host_group_2%:8190"
+    }
+   }
+  }
+ ],
+ "host_groups": [
+  {
+   "name": "host_group_1",
+   "components": [
+    {
+     "name": "FLUME_HANDLER"
+    },
+    {
+     "name": "HCAT"
+    },
+    {
+     "name": "HDFS_CLIENT"
+    },
+    {
+     "name": "HIVE_CLIENT"
+    },
+    {
+     "name": "JOURNALNODE"
+    },
+    {
+     "name": "MAPREDUCE2_CLIENT"
+    },
+    {
+     "name": "METRICS_MONITOR"
+    },
+    {
+     "name": "NAMENODE"
+    },
+    {
+     "name": "OOZIE_CLIENT"
+    },
+    {
+     "name": "PIG"
+    },
+    {
+     "name": "RESOURCEMANAGER"
+    },
+    {
+     "name": "SPARK_CLIENT"
+    },
+    {
+     "name": "SPARK_JOBHISTORYSERVER"
+    },
+    {
+     "name": "SQOOP"
+    },
+    {
+     "name": "TEZ_CLIENT"
+    },
+    {
+     "name": "YARN_CLIENT"
+    },
+    {
+     "name": "ZKFC"
+    },
+    {
+     "name": "ZOOKEEPER_CLIENT"
+    },
+    {
+     "name": "ZOOKEEPER_SERVER"
+    }
+   ],
+   "cardinality": "1"
+  },
+  {
+   "name": "host_group_2",
+   "components": [
+    {
+     "name": "APP_TIMELINE_SERVER"
+    },
+    {
+     "name": "FLUME_HANDLER"
+    },
+    {
+     "name": "HCAT"
+    },
+    {
+     "name": "HDFS_CLIENT"
+    },
+    {
+     "name": "HISTORYSERVER"
+    },
+    {
+     "name": "HIVE_CLIENT"
+    },
+    {
+     "name": "HIVE_METASTORE"
+    },
+    {
+     "name": "HIVE_SERVER"
+    },
+    {
+     "name": "JOURNALNODE"
+    },
+    {
+     "name": "MAPREDUCE2_CLIENT"
+    },
+    {
+     "name": "METRICS_MONITOR"
+    },
+    {
+     "name": "NAMENODE"
+    },
+    {
+     "name": "OOZIE_CLIENT"
+    },
+    {
+     "name": "PIG"
+    },
+    {
+     "name": "RESOURCEMANAGER"
+    },
+    {
+     "name": "SPARK_CLIENT"
+    },
+    {
+     "name": "SQOOP"
+    },
+    {
+     "name": "TEZ_CLIENT"
+    },
+    {
+     "name": "YARN_CLIENT"
+    },
+    {
+     "name": "ZKFC"
+    },
+    {
+     "name": "ZOOKEEPER_CLIENT"
+    },
+    {
+     "name": "ZOOKEEPER_SERVER"
+    }
+   ],
+   "cardinality": "1"
+  },
+  {
+   "name": "host_group_3",
+   "components": [
+    {
+     "name": "FLUME_HANDLER"
+    },
+    {
+     "name": "HCAT"
+    },
+    {
+     "name": "HDFS_CLIENT"
+    },
+    {
+     "name": "HIVE_CLIENT"
+    },
+    {
+     "name": "HIVE_METASTORE"
+    },
+    {
+     "name": "HIVE_SERVER"
+    },
+    {
+     "name": "JOURNALNODE"
+    },
+    {
+     "name": "KNOX_GATEWAY"
+    },
+    {
+     "name": "MAPREDUCE2_CLIENT"
+    },
+    {
+     "name": "METRICS_COLLECTOR"
+    },
+    {
+     "name": "METRICS_MONITOR"
+    },
+    {
+     "name": "MYSQL_SERVER"
+    },
+    {
+     "name": "OOZIE_CLIENT"
+    },
+    {
+     "name": "OOZIE_SERVER"
+    },
+    {
+     "name": "PIG"
+    },
+    {
+     "name": "SPARK_CLIENT"
+    },
+    {
+     "name": "SQOOP"
+    },
+    {
+     "name": "TEZ_CLIENT"
+    },
+    {
+     "name": "WEBHCAT_SERVER"
+    },
+    {
+     "name": "YARN_CLIENT"
+    },
+    {
+     "name": "ZOOKEEPER_CLIENT"
+    },
+    {
+     "name": "ZOOKEEPER_SERVER"
+    }
+   ],
+   "cardinality": "1"
+  },
+  {
+   "name": "host_group_4",
+   "components": [
+    {
+     "name": "DATANODE"
+    },
+    {
+     "name": "FLUME_HANDLER"
+    },
+    {
+     "name": "HCAT"
+    },
+    {
+     "name": "HDFS_CLIENT"
+    },
+    {
+     "name": "HIVE_CLIENT"
+    },
+    {
+     "name": "MAPREDUCE2_CLIENT"
+    },
+    {
+     "name": "METRICS_MONITOR"
+    },
+    {
+     "name": "NODEMANAGER"
+    },
+    {
+     "name": "OOZIE_CLIENT"
+    },
+    {
+     "name": "PIG"
+    },
+    {
+     "name": "SPARK_CLIENT"
+    },
+    {
+     "name": "SQOOP"
+    },
+    {
+     "name": "TEZ_CLIENT"
+    },
+    {
+     "name": "YARN_CLIENT"
+    },
+    {
+     "name": "ZOOKEEPER_CLIENT"
+    }
+   ],
+   "cardinality": "6"
+  },
+  {
+   "name": "host_group_5",
+   "components": [
+    {
+     "name": "HCAT"
+    },
+    {
+     "name": "HDFS_CLIENT"
+    },
+    {
+     "name": "HIVE_CLIENT"
+    },
+    {
+     "name": "MAPREDUCE2_CLIENT"
+    },
+    {
+     "name": "METRICS_MONITOR"
+    },
+    {
+     "name": "OOZIE_CLIENT"
+    },
+    {
+     "name": "PIG"
+    },
+    {
+     "name": "SPARK_CLIENT"
+    },
+    {
+     "name": "SQOOP"
+    },
+    {
+     "name": "TEZ_CLIENT"
+    },
+    {
+     "name": "YARN_CLIENT"
+    },
+    {
+     "name": "ZOOKEEPER_CLIENT"
+    }
+   ],
+   "cardinality": "1"
+  },
+  {
+   "name": "host_group_6",
+   "components": [
+    {
+     "name": "HCAT"
+    },
+    {
+     "name": "HDFS_CLIENT"
+    },
+    {
+     "name": "HIVE_CLIENT"
+    },
+    {
+     "name": "MAPREDUCE2_CLIENT"
+    },
+    {
+     "name": "METRICS_MONITOR"
+    },
+    {
+     "name": "OOZIE_CLIENT"
+    },
+    {
+     "name": "PIG"
+    },
+    {
+     "name": "SPARK_CLIENT"
+    },
+    {
+     "name": "SQOOP"
+    },
+    {
+     "name": "TEZ_CLIENT"
+    },
+    {
+     "name": "YARN_CLIENT"
+    },
+    {
+     "name": "ZOOKEEPER_CLIENT"
+    }
+   ],
+   "cardinality": "1"
+  }
+ ],
+ "Blueprints": {
+  "stack_name": "HDP",
+  "stack_version": "2.6",
+  "blueprint_name": "bigdatatest"
+ }
+}

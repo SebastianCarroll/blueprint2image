@@ -1,0 +1,70 @@
+{
+ "blueprint": "bigdatatest",
+ "default_password": "replace-with-strong-password",
+ "configurations": [],
+ "host_groups": [
+  {
+   "name": "host_group_1",
+   "hosts": [
+    {
+     "fqdn": "c4068.ambari.apache.org"
+    }
+   ]
+  },
+  {
+   "name": "host_group_2",
+   "hosts": [
+    {
+     "fqdn": "c4069.ambari.apache.org"
+    }
+   ]
+  },
+  {
+   "name": "host_group_3",
+   "hosts": [
+    {
+     "fqdn": "c4070.ambari.apache.org"
+    }
+   ]
+  },
+  {
+   "name": "host_group_4",
+   "hosts": [
+    {
+     "fqdn": "c4071.ambari.apache.org0"
+    },
+    {
+     "fqdn": "c4071.ambari.apache.org1"
+    },
+    {
+     "fqdn": "c4071.ambari.apache.org2"
+    },
+    {
+     "fqdn": "c4071.ambari.apache.org3"
+    },
+    {
+     "fqdn": "c4071.ambari.apache.org4"
+    },
+    {
+     "fqdn": "c4071.ambari.apache.org5"
+    }
+   ]
+  },
+  {
+   "name": "host_group_5",
+   "hosts": [
+    {
+     "fqdn": "c4106.ambari.apache.org"
+    }
+   ]
+  },
+  {
+   "name": "host_group_6",
+   "hosts": [
+    {
+     "fqdn": "c4107.ambari.apache.org"
+    }
+   ]
+  }
+ ]
+}
