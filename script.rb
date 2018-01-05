@@ -2,13 +2,16 @@ require 'json'
 require 'pp'
 require 'pry'
 
-blueprint = File.read('cluster_blueprint.json')
+blueprint_f=ARGV[0]
+hostgroups=ARGV[1]
+
+blueprint = File.read(blueprint_f)
 bl_json = JSON.parse(blueprint)
 
 # Mapping host group names to components installed.
 host2comps = bl_json['host_groups']
 
-host_g_file = File.read('hostgroups.json')
+host_g_file = File.read(hostgroups)
 hg_json = JSON.parse(host_g_file)
 
 # Mapping of host groups to list of FQDNS in that group
@@ -41,7 +44,7 @@ def simplify_hosts_2(e)
 end
 
 def simplify_comps(comps)
-  comps.map{|e| e["name"]}
+  comps.map{|e| e["name"]}.sort
 end
 
 hostnames_comps = host2comps.reduce(Hash.new) do |acc, hosts|
@@ -51,3 +54,14 @@ hostnames_comps = host2comps.reduce(Hash.new) do |acc, hosts|
 end
 
 pp hostnames_comps
+
+
+# Print out the counts
+#hostnames_comps.map{ |k,v| puts "#{k} -> #{v.length}" }
+counts_services = hostnames_comps.reduce(Hash.new { |h, k| h[k] = [] }) do |acc, (k,v)| 
+  acc[v.length] << k
+  acc
+end
+
+pp counts_services
+
